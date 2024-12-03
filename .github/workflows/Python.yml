@@ -35,3 +35,17 @@ jobs:
     - name: Run tests
       run: |
         pytest  # You can customize this with any test command you use
+
+    # Step 5: Send email on failure
+    - name: Send email on failure
+      if: failure()  # This step only runs if the previous steps fail
+      run: |
+        echo "Subject: GitHub Actions Failure Notification" > email.txt
+        echo "The GitHub Actions workflow failed. Please check the logs." >> email.txt
+        echo "Job: ${{ github.workflow }}" >> email.txt
+        echo "Commit: ${{ github.sha }}" >> email.txt
+        echo "Run URL: ${{ github.server_url }}/${{ github.repository }}/runs/${{ github.run_id }}" >> email.txt
+        
+        # Send email using Gmail
+        sendmail -S smtp.gmail.com:587 -f ${{ secrets.GMAIL_USER }} -t "shubhamdev098@gmail.com" \
+        -au${{ secrets.GMAIL_USER }} -ap${{ secrets.GMAIL_PASSWORD }} < email.txt

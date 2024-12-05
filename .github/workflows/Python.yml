@@ -13,6 +13,8 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest  # You can change to other operating systems if needed
+
+    
     
     steps:
     # Step 1: Check out the repository
@@ -45,6 +47,23 @@ jobs:
     - name: Run Flake8
       run: |
         flake8 .  # Specify the directory or files to check
+
+    # Step 7: Log in to Docker Hub
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.shubhamdev098 }}
+        password: ${{ secrets.Rutujadev098@ }}
+
+    # Step 8: Build Docker image
+    - name: Build Docker image
+      run: |
+        docker build -t Tr1/my-app:latest .  # Build the image
+
+    # Step 9: Push Docker image to Docker Hub
+    - name: Push Docker image to Docker Hub
+      run: |
+        docker push Tr2/my-app:latest  # Push the image to Docker Hub
 
     # Step 7: Send email on failure (optional)
     - name: Send email on failure 

@@ -37,12 +37,13 @@ jobs:
         pytest  # You can customize this with any test command you use
 
   - name: Install dependencies
-    run: |
-      pip install -r requirements.txt
-      pip install flake8
-
-  - name: Run flake8
-    run: flake8 .
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8
+    
+    - name: Run Flake8
+      run: |
+        flake8 path_to_your_code  # Specify the directory or files to check
 
     # Step 5: Send email on failure
     - name: Send email on failure

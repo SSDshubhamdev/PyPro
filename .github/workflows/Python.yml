@@ -35,6 +35,10 @@ jobs:
     - name: Run tests
       run: |
         pytest  # You can customize this with any test command you use
+        
+    - name: Run Flake8
+      run: |
+         flake8 .
 
     # Step 5: Send email on failure
     - name: Send email on failure

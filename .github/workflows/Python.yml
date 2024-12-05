@@ -44,7 +44,7 @@ jobs:
     # Step 6: Run Flake8 (for code linting)
     - name: Run Flake8
       run: |
-        flake8 D:\shubhgit  # Specify the directory or files to check
+        flake8 .github/workflows  # Specify the directory or files to check
 
     # Step 7: Send email on failure (optional)
     - name: Send email on failure

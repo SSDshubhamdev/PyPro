@@ -82,7 +82,7 @@ jobs:
           project-name: SSDshubhamdev/PyPro
 
     # Step 10: Send email on failure (optional)
-    - name: Send email on failure 
+    - name: Send email on failure
       if: failure()  # This step only runs if the previous steps fail
       run: |
         echo "Subject: GitHub Actions Failure Notification" > email.txt

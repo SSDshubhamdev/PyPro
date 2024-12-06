@@ -68,6 +68,12 @@ jobs:
       run: |
           docker image prune -af  # Removes unused images  
 
+  # Step 9: Run Snyk Security Scan (optional)
+    - name: Run Snyk Security Scan
+      uses: snyk/actions/python@v2
+      with:
+          snyk-token: ${{ secrets.SNYK_TOKEN }}  # Add SNYK_TOKEN in your GitHub secrets
+
     # Step 10: Send email on failure (optional)
     - name: Send email on failure 
       if: failure()  # This step only runs if the previous steps fail

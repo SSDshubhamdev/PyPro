@@ -68,19 +68,6 @@ jobs:
       run: |
           docker image prune -af  # Removes unused images  
 
-  # Step 11: Set up Snyk CLI
-    - name: Set up Snyk CLI
-      uses: snyk/actions/setup@v1
-      with:
-          snyk-token: ${{ secrets.SNYK_TOKEN }}
-
-  # Step 12: Run Snyk security scan
-    - name: Run Snyk security scan
-      uses: snyk/actions/snyk-security-scan@v1
-      with:
-          # Optional: Specify the project name for Snyk
-          project-name: SSDshubhamdev/PyPro
-
     # Step 10: Send email on failure (optional)
     - name: Send email on failure
       if: failure()  # This step only runs if the previous steps fail

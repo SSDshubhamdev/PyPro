@@ -63,16 +63,23 @@ jobs:
       run: |
         docker push ${{ secrets.DOCKER_USERNAME }}/my-app:latest  # Push the image to Docker Hub using the correct tag
 
-   # Step 17: Clean up Docker images (optional)
+   # Step 10: Clean up Docker images (optional)
     - name: Clean up old Docker images
       run: |
           docker image prune -af  # Removes unused images  
 
-  # Step 9: Run Snyk Security Scan (optional)
-    - name: Run Snyk Security Scan
-      uses: snyk/actions/python@v2
+  # Step 11: Set up Snyk CLI
+    - name: Set up Snyk CLI
+      uses: snyk/actions/setup@v1
       with:
-          snyk-token: ${{ secrets.SNYK_TOKEN }}  # Add SNYK_TOKEN in your GitHub secrets
+          snyk-token: ${{ secrets.SNYK_TOKEN }}
+
+  # Step 12: Run Snyk security scan
+    - name: Run Snyk security scan
+      uses: snyk/actions/snyk-security-scan@v1
+      with:
+          # Optional: Specify the project name for Snyk
+          project-name: SSDshubhamdev/PyPro
 
     # Step 10: Send email on failure (optional)
     - name: Send email on failure 

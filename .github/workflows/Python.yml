@@ -63,6 +63,11 @@ jobs:
       run: |
         docker push ${{ secrets.DOCKER_USERNAME }}/my-app:latest  # Push the image to Docker Hub using the correct tag
 
+   # Step 17: Clean up Docker images (optional)
+    - name: Clean up old Docker images
+      run: |
+          docker image prune -af  # Removes unused images  
+
     # Step 10: Send email on failure (optional)
     - name: Send email on failure 
       if: failure()  # This step only runs if the previous steps fail
